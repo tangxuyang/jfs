@@ -256,3 +256,6 @@ In module tree:
 Aborted due to warnings.
 ```
 接下来是拷贝文件的过程了，如果喜欢，可以依照源码手敲:)(2018-03-21)
+
+- 先把core.js拷贝到src目录下
+- 再拷贝core.js中依赖的文件

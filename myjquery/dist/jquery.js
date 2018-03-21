@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars*/
 /*!
  * jQuery JavaScript Library v1.0.0
  * https://jquery.com/
@@ -9,7 +10,7 @@
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2018-03-21T08:36Z
+ * Date: 2018-03-21T12:49Z
  */
 ( function( global, factory ) {
 
@@ -45,7 +46,10 @@
 // enough that all such attempts are guarded in a try block.
 "use strict";
 
-
+// @CODE
+// build.js inserts compiled jQuery here
 
 return jQuery;
 } );
+
+
