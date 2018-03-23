@@ -256,3 +256,57 @@ In module tree:
 Aborted due to warnings.
 ```
 接下来是拷贝文件的过程了，如果喜欢，可以依照源码手敲:)(2018-03-21)
+拷贝的内容有：
+- src/core.js  
+src/core.js依赖的所有文件:
+```
+"./var/arr",
+"./var/document",
+"./var/getProto",
+"./var/slice",
+"./var/concat",
+"./var/push",
+"./var/indexOf",
+"./var/class2type",
+"./var/toString",
+"./var/hasOwn",
+"./var/fnToString",
+"./var/ObjectFunctionString",
+"./var/support",
+"./var/isFunction",
+"./var/isWindow",
+"./core/DOMEval",
+"./core/toType"
+```
+
+这里要说一下var目录里的内容，经过jquery的build工具会变成一个var定义，比如./var/arr来说，它的源代码内容是：
+```
+define( function() {
+	"use strict";
+
+	return [];
+} );
+
+```
+最终结果会是:
+```
+var arr = [];
+```
+
+所有放在var目录里面的文件都是遵循这样一个原则的。既然我们说了那么让我们翻一下build/tasks/build.js中是哪段代码做了这个工作吧，也能有深刻的认识！
+
+```
+// Convert var modules
+if ( /.\/var\//.test( path.replace( process.cwd(), "" ) ) ) {
+	contents = contents
+		.replace(
+			/define\([\w\W]*?return/,
+			"var " +
+			( /var\/([\w-]+)/.exec( name )[ 1 ] ) +
+			" ="
+		)
+		.replace( rdefineEnd, "" );
+
+// Sizzle treatment
+}
+```
